@@ -1,0 +1,156 @@
+---
+
+---
+
+<header class="bg-white sticky top-0 z-50 shadow-md">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex-shrink-0">
+            <img
+                src="/logo.webp"
+                alt="Art Millennium Logo"
+                class="h-12 w-auto object-contain"
+            />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a
+                href="/"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Головна</a
+            >
+            <a
+                href="/catalog/molding"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Каталог</a
+            >
+            <a
+                href="#about"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Про нас</a
+            >
+            <a
+                href="#services"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Послуги</a
+            >
+            <a
+                href="#contacts"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Контакти</a
+            >
+        </nav>
+
+        <!-- Pagefind Search & Mobile Menu Button -->
+        <div class="flex items-center gap-4">
+            <div id="search" class="w-32 md:w-48"></div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden text-gray-800 focus:outline-none"
+                aria-label="Toggle menu"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-gray-100 bg-white absolute top-full left-0 w-full shadow-lg"
+    >
+        <nav class="flex flex-col p-4 gap-4">
+            <a
+                href="/"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Головна</a
+            >
+            <a
+                href="/catalog/molding"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Каталог</a
+            >
+            <a
+                href="#about"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Про нас</a
+            >
+            <a
+                href="#services"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Послуги</a
+            >
+            <a
+                href="#contacts"
+                class="text-gray-800 hover:text-blue-600 font-medium transition-colors"
+                >Контакти</a
+            >
+        </nav>
+    </div>
+</header>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<script is:inline>
+    // Initialize Pagefind
+    window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            showImages: false,
+            translations: {
+                placeholder: "Пошук...",
+            },
+        });
+    });
+
+    // Mobile Menu Toggle
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+
+    if (btn && menu) {
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Close menu when a link is clicked
+        const menuLinks = menu.querySelectorAll("a");
+        menuLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                menu.classList.add("hidden");
+            });
+        });
+    }
+</script>
+
+<style is:global>
+    /* Customizing Pagefind UI to match Tailwind styles loosely */
+    :root {
+        --pagefind-ui-scale: 0.8;
+        --pagefind-ui-primary: #2563eb;
+        --pagefind-ui-text: #1f2937;
+        --pagefind-ui-background: #ffffff;
+        --pagefind-ui-border: #e5e7eb;
+        --pagefind-ui-tag: #f3f4f6;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 0.5rem;
+        --pagefind-ui-image-border-radius: 0.5rem;
+        --pagefind-ui-image-box-ratio: 3 / 2;
+        --pagefind-ui-font: sans-serif;
+    }
+</style>

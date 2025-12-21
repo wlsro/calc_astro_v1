@@ -1,0 +1,194 @@
+---
+import ServiceCard from "./ServiceCard.astro";
+
+const services = [
+    {
+        title: "Оформлення дзеркал у багет",
+        description:
+            "Створення стильної рами для дзеркал, яка підкреслює інтер’єр і додає естетики.",
+    },
+    {
+        title: "Поклейка постерів та плакатів",
+        description:
+            "Наклеювання постерів чи плакатів на основу для подальшого оформлення або зручного зберігання.",
+    },
+    {
+        title: "Порізка паспарту",
+        description:
+            "Виготовлення декоративного паспарту з точними розмірами, яке підкреслює зображення в рамці.",
+    },
+    {
+        title: "Порізка скла",
+        description:
+            "Індивідуальна нарізка скла під необхідні розміри для картин чи фотографій.",
+    },
+    {
+        title: "Фреймінг колекційних предметів",
+        description:
+            "Професійне оформлення предметів колекціонування (монети, медалі, сувеніри тощо) в рамку для захисту і презентації.",
+    },
+    {
+        title: "Виготовлення підрамників",
+        description:
+            "Створення дерев’яної основи (підрамника) для натяжки полотен різних форматів.",
+    },
+    {
+        title: "Натяжка вишивок",
+        description:
+            "Натяжка вишитих робіт на основу для подальшого оформлення в рамку.",
+    },
+    {
+        title: "Галерейна натяжка",
+        description:
+            "Професійна натяжка полотна на підрамник з загином зображення на торці, як у галереях.",
+    },
+    {
+        title: "Натяжка полотна",
+        description:
+            "Натягування художнього полотна на підрамник з урахуванням пропорцій і збереження форми.",
+    },
+];
+---
+
+<div class="relative group px-4 md:px-12">
+    <!-- Slider Container -->
+    <div
+        id="services-slider"
+        class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scrollbar-hide scroll-smooth"
+    >
+        {
+            services.map((service) => (
+                <div class="flex-none w-full md:w-[calc(25%-12px)] snap-center h-auto">
+                    <ServiceCard
+                        title={service.title}
+                        description={service.description}
+                    />
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button
+        id="prevServiceBtn"
+        class="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md z-10 hover:bg-gray-50 focus:outline-none hidden md:block"
+        aria-label="Previous service"
+    >
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path></svg
+        >
+    </button>
+
+    <button
+        id="nextServiceBtn"
+        class="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md z-10 hover:bg-gray-50 focus:outline-none hidden md:block"
+        aria-label="Next service"
+    >
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path></svg
+        >
+    </button>
+</div>
+
+<script>
+    const slider = document.getElementById("services-slider");
+    const prevBtn = document.getElementById("prevServiceBtn");
+    const nextBtn = document.getElementById("nextServiceBtn");
+
+    let autoScrollInterval: number | undefined;
+
+    const scrollNext = () => {
+        if (!slider) return;
+
+        // Calculate card width dynamically including gap
+        const firstCard = slider.firstElementChild as HTMLElement;
+        if (!firstCard) return;
+
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 16; // 4 * 4px (tailwind gap-4)
+        const scrollAmount = cardWidth + gap;
+
+        // Check if we are at the end (allowing for some float inaccuracy)
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+            slider.scrollTo({ left: 0, behavior: "smooth" }); // Loop back to start
+        } else {
+            slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+    };
+
+    const scrollPrev = () => {
+        if (!slider) return;
+
+        const firstCard = slider.firstElementChild as HTMLElement;
+        if (!firstCard) return;
+
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 16;
+        const scrollAmount = cardWidth + gap;
+
+        // Check if we are at the start
+        if (slider.scrollLeft <= 10) {
+            slider.scrollTo({ left: slider.scrollWidth, behavior: "smooth" }); // Loop to end
+        } else {
+            slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        }
+    };
+
+    const startAutoScroll = () => {
+        stopAutoScroll(); // Prevent multiple intervals
+        autoScrollInterval = window.setInterval(scrollNext, 5000); // 5 seconds for slower reading pace
+    };
+
+    const stopAutoScroll = () => {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+    };
+
+    // Event Listeners
+    nextBtn?.addEventListener("click", () => {
+        scrollNext();
+        startAutoScroll(); // Reset timer
+    });
+
+    prevBtn?.addEventListener("click", () => {
+        scrollPrev();
+        startAutoScroll(); // Reset timer
+    });
+
+    // Pause on hover
+    if (slider) {
+        slider.addEventListener("mouseenter", stopAutoScroll);
+        slider.addEventListener("mouseleave", startAutoScroll);
+    }
+
+    // Initial Start
+    startAutoScroll();
+</script>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+</style>

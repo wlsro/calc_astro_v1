@@ -1,0 +1,83 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Branding & About -->
+        <div>
+            <h3 class="text-2xl font-bold mb-4">Art Millennium</h3>
+            <p class="text-gray-400">
+                Професійна багетна майстерня. Оформлення картин, дзеркал,
+                вишивок та інших творів мистецтва.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h4 class="text-xl font-semibold mb-4 text-gray-200">Навігація</h4>
+            <ul class="space-y-2">
+                <li>
+                    <a
+                        href="/"
+                        class="text-gray-400 hover:text-white transition-colors"
+                        >Головна</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/catalog"
+                        class="text-gray-400 hover:text-white transition-colors"
+                        >Каталог багету</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#about"
+                        class="text-gray-400 hover:text-white transition-colors"
+                        >Про нас</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#services"
+                        class="text-gray-400 hover:text-white transition-colors"
+                        >Послуги</a
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contacts -->
+        <div id="contacts">
+            <h4 class="text-xl font-semibold mb-4 text-gray-200">Контакти</h4>
+            <ul class="space-y-2 text-gray-400">
+                <li class="flex items-center gap-2">
+                    <span>📍</span> м. Київ, вул. Прикладна, 1
+                </li>
+                <li class="flex items-center gap-2">
+                    <span>📞</span>
+                    <a
+                        href="tel:+380000000000"
+                        class="hover:text-white transition-colors"
+                        >+38 (000) 000-00-00</a
+                    >
+                </li>
+                <li class="flex items-center gap-2">
+                    <span>📧</span>
+                    <a
+                        href="mailto:info@artmillennium.com"
+                        class="hover:text-white transition-colors"
+                        >info@artmillennium.com</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div
+        class="container mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm"
+    >
+        &copy; {currentYear} Art Millennium. Всі права захищено.
+    </div>
+</footer>

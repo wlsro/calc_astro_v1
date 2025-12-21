@@ -1,0 +1,53 @@
+{
+    "DM12040": {
+        "model_name": "DM12040",
+        "group_image": "/img/models_img/molding-DM12040.jpg",
+        "category": [
+            "Пластиковий багет",
+            "Багет для дзеркал"
+        ],
+        "width": 120,
+        "height": 40,
+        "price": 120,
+        "variants": [
+            {
+                "id": "DM12040-8151",
+                "thumb": "/img/thumbs/DM12040/molding-DM12040-8151-sm.jpg",
+                "main_img": "/img/main_img/DM12040/molding-DM12040-8151.jpg"
+            },
+            {
+                "id": "DM12040-3061",
+                "thumb": "/img/thumbs/DM12040/molding-DM12040-3061-sm.jpg",
+                "main_img": "/img/main_img/DM12040/molding-DM12040-3061.jpg"
+            }
+        ]
+    },
+    "AM1035": {
+        "model_name": "AM1035",
+        "group_image": "/img/models_img/molding-AM1035.jpg",
+        "category": [
+            "Пластиковий багет",
+            "Багет для гобеленів"
+        ],
+        "width": 100,
+        "height": 35,
+        "price": 100,
+        "variants": [
+            {
+                "id": "AM1035-5023",
+                "thumb": "/img/thumbs/AM1035/molding-AM1035-5023-sm.jpg",
+                "main_img": "/img/main_img/AM1035/molding-AM1035-5023.jpg"
+            },
+            {
+                "id": "AM1035-X811",
+                "thumb": "/img/thumbs/AM1035/molding-AM1035-X811-sm.jpg",
+                "main_img": "/img/main_img/AM1035/molding-AM1035-X811.jpg"
+            },
+            {
+                "id": "AM1035-015-3",
+                "thumb": "/img/thumbs/AM1035/molding-AM1035-015-3-sm.jpg",
+                "main_img": "/img/main_img/AM1035/molding-AM1035-015-3.jpg"
+            }
+        ]
+    }
+}

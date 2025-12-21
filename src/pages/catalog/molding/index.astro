@@ -1,0 +1,334 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import MoldingCard from "../../../components/MoldingCard.astro";
+import catalogData from "../../../data/catalog.json";
+
+const moldings = Object.values(catalogData);
+
+// Extract unique categories for filter
+const allCategories = [
+    ...new Set(moldings.flatMap((m) => m.category || [])),
+].sort();
+
+// Create width ranges
+const widthRanges = [
+    { label: "10-20 мм", min: 10, max: 20 },
+    { label: "20-30 мм", min: 20, max: 30 },
+    { label: "30-40 мм", min: 30, max: 40 },
+    { label: "40-50 мм", min: 40, max: 50 },
+    { label: "50-60 мм", min: 50, max: 60 },
+    { label: "60-80 мм", min: 60, max: 80 },
+    { label: "80-100 мм", min: 80, max: 100 },
+    { label: "100+ мм", min: 100, max: 999 },
+];
+
+// Determine max price for slider
+const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
+---
+
+<Layout title="Каталог багету - Art Millennium">
+    <Header />
+
+    <main class="bg-gray-50 min-h-screen py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                    Каталог Багету
+                </h1>
+                <p class="text-gray-600">
+                    Оберіть ідеальний багет для вашого шедевру з нашої колекції.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters -->
+                <aside class="w-full lg:w-1/4 flex-shrink-0">
+                    <!-- Mobile Filter Toggle Button -->
+                    <button
+                        id="filterToggle"
+                        class="lg:hidden w-full flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-4 text-gray-900 font-bold"
+                    >
+                        <span>Фільтри</span>
+                        <svg
+                            id="filterChevron"
+                            class="w-5 h-5 transform transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+
+                    <div
+                        id="filterContent"
+                        class="hidden lg:block bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-24"
+                    >
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-gray-900">
+                                Фільтри
+                            </h2>
+                            <button
+                                id="resetFilters"
+                                class="text-sm text-blue-600 hover:text-blue-800 underline"
+                                >Скинути всі</button
+                            >
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="mb-8">
+                            <h3 class="font-semibold text-gray-900 mb-4">
+                                Ціна (грн/м)
+                            </h3>
+                            <div class="px-2">
+                                <input
+                                    type="range"
+                                    id="priceRange"
+                                    min="0"
+                                    max={maxPrice}
+                                    value={maxPrice}
+                                    step="10"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                                />
+                                <div
+                                    class="flex justify-between text-sm text-gray-600 mt-2"
+                                >
+                                    <span>0</span>
+                                    <span id="priceValue">{maxPrice}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Width Filter -->
+                        <div class="mb-8">
+                            <h3 class="font-semibold text-gray-900 mb-3">
+                                Ширина багету
+                            </h3>
+                            <div class="space-y-2">
+                                {
+                                    widthRanges.map((range, index) => (
+                                        <label class="flex items-center space-x-3 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                name="width"
+                                                value={`${range.min}-${range.max}`}
+                                                class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                            />
+                                            <span class="text-gray-700 group-hover:text-blue-600 transition-colors">
+                                                {range.label}
+                                            </span>
+                                        </label>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-3">
+                                Категорія
+                            </h3>
+                            <div
+                                class="space-y-2 max-h-60 overflow-y-auto pr-2 scrollbar-thin"
+                            >
+                                {
+                                    allCategories.map((cat, index) => (
+                                        <label class="flex items-center space-x-3 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                name="category"
+                                                value={cat}
+                                                class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                            />
+                                            <span class="text-gray-700 group-hover:text-blue-600 transition-colors">
+                                                {cat}
+                                            </span>
+                                        </label>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <div class="w-full lg:w-3/4">
+                    <!-- Results Count -->
+                    <div class="mb-4 text-gray-500 text-sm">
+                        Знайдено моделей: <span
+                            id="resultsCount"
+                            class="font-semibold text-gray-900"
+                            >{moldings.length}</span
+                        >
+                    </div>
+
+                    <div
+                        id="moldingGrid"
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"
+                    >
+                        {
+                            moldings.map((molding) => (
+                                <div
+                                    class="molding-item"
+                                    data-price={molding.price}
+                                    data-width={molding.width}
+                                    data-categories={JSON.stringify(
+                                        molding.category,
+                                    )}
+                                >
+                                    <MoldingCard
+                                        model_name={molding.model_name}
+                                        group_image={molding.group_image}
+                                        width={molding.width}
+                                        price={molding.price}
+                                        category={molding.category}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div id="noResults" class="hidden text-center py-12">
+                        <div class="text-6xl mb-4">🔍</div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                            Нічого не знайдено
+                        </h3>
+                        <p class="text-gray-600">
+                            Спробуйте змінити параметри фільтрації
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>
+
+<script>
+    const priceRange = document.getElementById(
+        "priceRange",
+    ) as HTMLInputElement;
+    const priceValue = document.getElementById("priceValue");
+    const widthCheckboxes = document.querySelectorAll('input[name="width"]');
+    const categoryCheckboxes = document.querySelectorAll(
+        'input[name="category"]',
+    );
+    const gridItems = document.querySelectorAll(".molding-item");
+    const resultsCount = document.getElementById("resultsCount");
+    const noResults = document.getElementById("noResults");
+    const resetBtn = document.getElementById("resetFilters");
+    const filterToggle = document.getElementById("filterToggle");
+    const filterContent = document.getElementById("filterContent");
+    const filterChevron = document.getElementById("filterChevron");
+
+    // Toggle Filters on Mobile
+    filterToggle?.addEventListener("click", () => {
+        filterContent?.classList.toggle("hidden");
+        filterChevron?.classList.toggle("rotate-180");
+    });
+
+    function filterItems() {
+        const maxPrice = parseInt(priceRange.value);
+        if (priceValue) priceValue.textContent = maxPrice.toString();
+
+        const selectedWidths = Array.from(widthCheckboxes)
+            .filter((cb: any) => cb.checked)
+            .map((cb: any) => {
+                const [min, max] = cb.value.split("-").map(Number);
+                return { min, max };
+            });
+
+        const selectedCategories = Array.from(categoryCheckboxes)
+            .filter((cb: any) => cb.checked)
+            .map((cb: any) => cb.value);
+
+        let visibleCount = 0;
+
+        gridItems.forEach((item: any) => {
+            const price = parseInt(item.dataset.price);
+            const width = parseInt(item.dataset.width);
+            const categories = JSON.parse(item.dataset.categories);
+
+            // Filter by Price (Max limit)
+            const priceMatch = price <= maxPrice;
+
+            // Filter by Width
+            let widthMatch = true;
+            if (selectedWidths.length > 0) {
+                widthMatch = selectedWidths.some(
+                    (range) => width >= range.min && width <= range.max,
+                );
+            }
+
+            // Filter by Category
+            let categoryMatch = true;
+            if (selectedCategories.length > 0) {
+                categoryMatch = selectedCategories.some((cat) =>
+                    categories.includes(cat),
+                );
+            }
+
+            if (priceMatch && widthMatch && categoryMatch) {
+                item.style.display = "block";
+                visibleCount++;
+            } else {
+                item.style.display = "none";
+            }
+        });
+
+        if (resultsCount) resultsCount.textContent = visibleCount.toString();
+
+        if (noResults) {
+            if (visibleCount === 0) {
+                noResults.classList.remove("hidden");
+            } else {
+                noResults.classList.add("hidden");
+            }
+        }
+    }
+
+    // Attach listeners
+    priceRange?.addEventListener("input", filterItems);
+    widthCheckboxes.forEach((cb) => cb.addEventListener("change", filterItems));
+    categoryCheckboxes.forEach((cb) =>
+        cb.addEventListener("change", filterItems),
+    );
+
+    // Reset logic
+    resetBtn?.addEventListener("click", () => {
+        priceRange.value = priceRange.max;
+        if (priceValue) priceValue.textContent = priceRange.max;
+
+        widthCheckboxes.forEach((cb: any) => (cb.checked = false));
+        categoryCheckboxes.forEach((cb: any) => (cb.checked = false));
+
+        filterItems();
+    });
+
+    // Initial run not needed if server renders all visible, but good for sync state
+</script>
+
+<style>
+    /* Styling scrollbar for categories list */
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+    }
+</style>
