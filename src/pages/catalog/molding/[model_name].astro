@@ -2,7 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
-import catalogData from "../../../data/catalog.json";
+import catalogData from "../../../data/molding.json";
 
 export async function getStaticPaths() {
     const paths = Object.values(catalogData).map((model) => ({
@@ -68,7 +68,7 @@ const { model } = Astro.props;
                         <div
                             class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-secondary-text"
                         >
-                            <div class="col-span-2">
+                            <div class="col-span-2 md:col-span-1">
                                 <span class="block text-sm opacity-70"
                                     >Ціна</span
                                 >
