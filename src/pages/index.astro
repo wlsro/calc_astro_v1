@@ -26,11 +26,13 @@ const advantages = [
                 <div class="flex flex-col md:flex-row gap-12 items-center">
                     <div class="md:w-1/2">
                         <h2
-                            class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 text-center"
+                            class="text-3xl md:text-4xl font-bold mb-6 text-main-text text-center"
                         >
                             Про Нас
                         </h2>
-                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        <p
+                            class="text-lg text-secondary-text mb-6 leading-relaxed"
+                        >
                             <b>"Art Millennium"</b> — це місце, де ваші шедеври отримують
                             гідне обрамлення. Ми – компанія, яка понад 15 років спеціалізується
                             на виробництві та реалізації високоякісного пластикового
@@ -40,13 +42,13 @@ const advantages = [
                             професійним досвідом, які досконало володіють мистецтвом
                             оформлення.
                         </p>
-                        <p class="text-lg text-gray-600 leading-relaxed">
+                        <p class="text-lg text-secondary-text leading-relaxed">
                             Наш асортимент включає понад 1200 варіантів
                             пластикового багету різних стилів, кольорів і
                             фактур. А також широкий вибір комплектуючих для
                             оформлення картин і фоторамок.
                         </p>
-                        <p class="text-lg text-gray-600 leading-relaxed">
+                        <p class="text-lg text-secondary-text leading-relaxed">
                             Завдяки власному виробництву, ми забезпечуємо високу
                             якість кожного виробу, контрольовану на всіх етапах
                             виробничого процесу і конкурентоспроможні ціни.
@@ -63,10 +65,10 @@ const advantages = [
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-16 md:py-24 bg-gray-50">
+        <section id="services" class="py-16 md:py-24 bg-main-bg">
             <div class="container mx-auto px-4">
                 <h2
-                    class="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900"
+                    class="text-3xl md:text-4xl font-bold mb-12 text-center text-main-text"
                 >
                     Наші Послуги
                 </h2>
@@ -75,30 +77,30 @@ const advantages = [
         </section>
 
         <!-- Why Us Section -->
-        <section class="py-16 md:py-24 bg-white">
+        <section class="py-16 md:py-24 bg-cards">
             <div class="container mx-auto px-4">
                 <h2
-                    class="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900"
+                    class="text-3xl md:text-4xl font-bold mb-12 text-center text-main-text"
                 >
                     Чому обирають нас
                 </h2>
-                <p class="text-lg text-gray-600 leading-relaxed">
+                <p class="text-lg text-secondary-text leading-relaxed">
                     Щодня в багетній майстерні «Art Millennium» оформлюються
                     роботи різного рівня складності — від невеликих вишивок до
                     великогабаритних цінних робіт, що потребують найвищого рівня
                     оформлення.
                 </p>
-                <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                <p class="text-lg text-secondary-text leading-relaxed mb-6">
                     Наша основна спеціалізація — професійне оформлення
                     мистецьких творів. Ми здійснюємо багетне оформлення
                     живопису, графіки, фотографій та вишивок, використовуючи
                     сучасне обладнання та високоякісні матеріали.
                 </p>
-                <p class="text-lg text-gray-600 leading-relaxed">
+                <p class="text-lg text-secondary-text leading-relaxed">
                     Окрім цього, ми виготовляємо рами для дзеркал, кіоти для
                     ікон, оформляємо дипломи, сувеніри та об’ємні предмети.
                 </p>
-                <p class="text-lg text-gray-600 leading-relaxed">
+                <p class="text-lg text-secondary-text leading-relaxed">
                     Рама — це не лише естетичне доповнення, а й надійний захист
                     для вашої роботи. Завдяки правильному підбору матеріалів,
                     таких як паспарту, скло, вставки та задня панель, оформлені
@@ -111,10 +113,10 @@ const advantages = [
                     {
                         advantages.map((adv) => (
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-blue-600 mb-3">
+                                <h3 class="text-xl font-bold text-accent mb-3">
                                     {adv.title}
                                 </h3>
-                                <p class="text-gray-600">{adv.text}</p>
+                                <p class="text-secondary-text">{adv.text}</p>
                             </div>
                         ))
                     }

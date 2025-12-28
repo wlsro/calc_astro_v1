@@ -31,13 +31,13 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 <Layout title="Каталог багету - Art Millennium">
     <Header />
 
-    <main class="bg-gray-50 min-h-screen py-8">
+    <main class="bg-main-bg min-h-screen py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                <h1 class="text-3xl md:text-4xl font-bold text-main-text mb-2">
                     Каталог Багету
                 </h1>
-                <p class="text-gray-600">
+                <p class="text-secondary-text">
                     Оберіть ідеальний багет для вашого шедевру з нашої колекції.
                 </p>
             </div>
@@ -48,7 +48,7 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                     <!-- Mobile Filter Toggle Button -->
                     <button
                         id="filterToggle"
-                        class="lg:hidden w-full flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-4 text-gray-900 font-bold"
+                        class="lg:hidden w-full flex items-center justify-between bg-cards p-4 rounded-xl shadow-sm border border-main-borders mb-4 text-main-text font-bold"
                     >
                         <span>Фільтри</span>
                         <svg
@@ -67,22 +67,22 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 
                     <div
                         id="filterContent"
-                        class="hidden lg:block bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-24"
+                        class="hidden lg:block bg-cards p-6 rounded-xl shadow-sm border border-main-borders sticky top-24"
                     >
                         <div class="flex items-center justify-between mb-6">
-                            <h2 class="text-xl font-bold text-gray-900">
+                            <h2 class="text-xl font-bold text-main-text">
                                 Фільтри
                             </h2>
                             <button
                                 id="resetFilters"
-                                class="text-sm text-blue-600 hover:text-blue-800 underline"
+                                class="text-sm text-accent hover:text-accent-hover underline"
                                 >Скинути всі</button
                             >
                         </div>
 
                         <!-- Price Filter -->
                         <div class="mb-8">
-                            <h3 class="font-semibold text-gray-900 mb-4">
+                            <h3 class="font-semibold text-main-text mb-4">
                                 Ціна (грн/м)
                             </h3>
                             <div class="px-2">
@@ -93,10 +93,10 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                                     max={maxPrice}
                                     value={maxPrice}
                                     step="10"
-                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                                    class="w-full h-2 bg-main-borders rounded-lg appearance-none cursor-pointer accent-accent"
                                 />
                                 <div
-                                    class="flex justify-between text-sm text-gray-600 mt-2"
+                                    class="flex justify-between text-sm text-secondary-text mt-2"
                                 >
                                     <span>0</span>
                                     <span id="priceValue">{maxPrice}</span>
@@ -106,7 +106,7 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 
                         <!-- Width Filter -->
                         <div class="mb-8">
-                            <h3 class="font-semibold text-gray-900 mb-3">
+                            <h3 class="font-semibold text-main-text mb-3">
                                 Ширина багету
                             </h3>
                             <div class="space-y-2">
@@ -117,9 +117,9 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                                                 type="checkbox"
                                                 name="width"
                                                 value={`${range.min}-${range.max}`}
-                                                class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                class="form-checkbox h-5 w-5 text-accent border-main-borders rounded focus:ring-accent"
                                             />
-                                            <span class="text-gray-700 group-hover:text-blue-600 transition-colors">
+                                            <span class="text-secondary-text group-hover:text-accent transition-colors">
                                                 {range.label}
                                             </span>
                                         </label>
@@ -130,7 +130,7 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 
                         <!-- Category Filter -->
                         <div>
-                            <h3 class="font-semibold text-gray-900 mb-3">
+                            <h3 class="font-semibold text-main-text mb-3">
                                 Категорія
                             </h3>
                             <div
@@ -143,9 +143,9 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                                                 type="checkbox"
                                                 name="category"
                                                 value={cat}
-                                                class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                class="form-checkbox h-5 w-5 text-accent border-main-borders rounded focus:ring-accent"
                                             />
-                                            <span class="text-gray-700 group-hover:text-blue-600 transition-colors">
+                                            <span class="text-secondary-text group-hover:text-accent transition-colors">
                                                 {cat}
                                             </span>
                                         </label>
@@ -159,10 +159,10 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                 <!-- Product Grid -->
                 <div class="w-full lg:w-3/4">
                     <!-- Results Count -->
-                    <div class="mb-4 text-gray-500 text-sm">
+                    <div class="mb-4 text-secondary-text text-sm">
                         Знайдено моделей: <span
                             id="resultsCount"
-                            class="font-semibold text-gray-900"
+                            class="font-semibold text-main-text"
                             >{moldings.length}</span
                         >
                     </div>
@@ -196,10 +196,10 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                     <!-- No Results Message -->
                     <div id="noResults" class="hidden text-center py-12">
                         <div class="text-6xl mb-4">🔍</div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        <h3 class="text-xl font-semibold text-main-text mb-2">
                             Нічого не знайдено
                         </h3>
-                        <p class="text-gray-600">
+                        <p class="text-secondary-text">
                             Спробуйте змінити параметри фільтрації
                         </p>
                     </div>

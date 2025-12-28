@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2563eb;
-  --color-secondary: #1e40af;
+  --color-main-bg: #FDFBF7;
+  --color-cards: #ffffff;
+  --color-main-text: #3D2B1F;
+  --color-secondary-text: #7A6652;
+  --color-accent: #C05331;
+  --color-accent-hover: #A04228;
+  --color-main-borders: #E2D8C9;
 }
 
 /* Custom scrollbar for slider */
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
+
 .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

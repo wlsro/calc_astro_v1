@@ -12,9 +12,9 @@ const { model_name, group_image, width, price, category } = Astro.props;
 
 <a
     href={`/catalog/molding/${model_name}`}
-    class="block bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 group h-full"
+    class="block bg-cards rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-main-borders group h-full"
 >
-    <div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
+    <div class="relative aspect-[4/3] overflow-hidden bg-main-bg">
         <img
             src={group_image}
             alt={`Багет ${model_name}`}
@@ -25,17 +25,17 @@ const { model_name, group_image, width, price, category } = Astro.props;
 
     <div class="p-4">
         <div class="flex justify-between items-start mb-1">
-            <h3 class="text-lg font-bold text-gray-900">Серія {model_name}</h3>
-            <span class="text-blue-600 font-bold whitespace-nowrap"
+            <h3 class="text-lg font-bold text-main-text">Серія {model_name}</h3>
+            <span class="text-accent font-bold whitespace-nowrap"
                 >{price} грн/м</span
             >
         </div>
 
         <div
-            class="flex items-center justify-between text-sm text-gray-500 mb-3"
+            class="flex items-center justify-between text-sm text-secondary-text mb-3"
         >
             <span
-                >Ширина: <span class="text-gray-900 font-semibold"
+                >Ширина: <span class="text-main-text font-semibold"
                     >{width} мм</span
                 ></span
             >
@@ -46,7 +46,7 @@ const { model_name, group_image, width, price, category } = Astro.props;
                 category
                     .slice(0, 2)
                     .map((cat) => (
-                        <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full border border-gray-200">
+                        <span class="text-[10px] bg-main-bg text-secondary-text px-2 py-0.5 rounded-full border border-main-borders">
                             {cat}
                         </span>
                     ))
