@@ -3,11 +3,12 @@ interface Props {
     model_name: string;
     group_image: string;
     width: number;
+    height: number;
     price: number;
     category: string[];
 }
 
-const { model_name, group_image, width, price, category } = Astro.props;
+const { model_name, group_image, width, height, price, category } = Astro.props;
 ---
 
 <a
@@ -26,7 +27,7 @@ const { model_name, group_image, width, price, category } = Astro.props;
     <div class="p-4">
         <div class="flex justify-between items-start mb-1">
             <h3 class="text-lg font-bold text-main-text">Серія {model_name}</h3>
-            <span class="text-accent font-bold whitespace-nowrap"
+            <span class="text-lg text-accent font-bold whitespace-nowrap"
                 >{price} грн/м</span
             >
         </div>
@@ -37,6 +38,11 @@ const { model_name, group_image, width, price, category } = Astro.props;
             <span
                 >Ширина: <span class="text-main-text font-semibold"
                     >{width} мм</span
+                ></span
+            >
+            <span
+                >Висота: <span class="text-main-text font-semibold"
+                    >{height} мм</span
                 ></span
             >
         </div>
