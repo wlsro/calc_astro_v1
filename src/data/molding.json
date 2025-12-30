@@ -8,7 +8,7 @@
         ],
         "width": 120,
         "height": 40,
-        "price": 0,
+        "price": 900,
         "variants": [
             {
                 "id": "DM12040-8151",
@@ -31,7 +31,7 @@
         ],
         "width": 100,
         "height": 35,
-        "price": 0,
+        "price": 800,
         "variants": [
             {
                 "id": "AM1035-015-3",
@@ -99,7 +99,7 @@
         ],
         "width": 94,
         "height": 39,
-        "price": 0,
+        "price": 750,
         "variants": [
             {
                 "id": "AM9439-X1225",
@@ -167,7 +167,7 @@
         ],
         "width": 86,
         "height": 29,
-        "price": 0,
+        "price": 680,
         "variants": [
             {
                 "id": "AM8629A-090",
@@ -247,7 +247,7 @@
         ],
         "width": 85,
         "height": 32,
-        "price": 0,
+        "price": 600,
         "variants": [
             {
                 "id": "R332-X1225",
@@ -321,7 +321,7 @@
         ],
         "width": 83,
         "height": 30,
-        "price": 0,
+        "price": 660,
         "variants": [
             {
                 "id": "DM8330-6575",
@@ -394,7 +394,7 @@
         ],
         "width": 80,
         "height": 52,
-        "price": 0,
+        "price": 600,
         "variants": [
             {
                 "id": "R349-B186",
@@ -459,7 +459,7 @@
         ],
         "width": 80,
         "height": 30,
-        "price": 0,
+        "price": 610,
         "variants": [
             {
                 "id": "LF49-090",
@@ -482,7 +482,7 @@
         ],
         "width": 76,
         "height": 32,
-        "price": 0,
+        "price": 610,
         "variants": [
             {
                 "id": "DM7632-019",
@@ -491,31 +491,31 @@
             }
         ]
     },
-    "DM7616V": {
-        "model_name": "DM7616V",
-        "group_image": "/img/models_img/molding-DM7616V.jpg",
+    "DM7616B": {
+        "model_name": "DM7616B",
+        "group_image": "/img/models_img/molding-DM7616B.jpg",
         "category": [
             "Пластиковий багет",
             "Багет для дзеркал"
         ],
         "width": 76,
         "height": 16,
-        "price": 0,
+        "price": 400,
         "variants": [
             {
-                "id": "DM7616V-05091",
-                "thumb": "/img/thumbs/DM7616V/molding-DM7616V-05091-sm.jpg",
-                "main_img": "/img/main_img/DM7616V/molding-DM7616V-05091.jpg"
+                "id": "DM7616B-05091",
+                "thumb": "/img/thumbs/DM7616B/molding-DM7616B-05091-sm.jpg",
+                "main_img": "/img/main_img/DM7616B/molding-DM7616B-05091.jpg"
             },
             {
-                "id": "DM7616V-05003",
-                "thumb": "/img/thumbs/DM7616V/molding-DM7616V-05003-sm.jpg",
-                "main_img": "/img/main_img/DM7616V/molding-DM7616V-05003.jpg"
+                "id": "DM7616B-05003",
+                "thumb": "/img/thumbs/DM7616B/molding-DM7616B-05003-sm.jpg",
+                "main_img": "/img/main_img/DM7616B/molding-DM7616B-05003.jpg"
             },
             {
-                "id": "DM7616V-05002-1",
-                "thumb": "/img/thumbs/DM7616V/molding-DM7616V-05002-1-sm.jpg",
-                "main_img": "/img/main_img/DM7616V/molding-DM7616V-05002-1.jpg"
+                "id": "DM7616B-05002-1",
+                "thumb": "/img/thumbs/DM7616B/molding-DM7616B-05002-1-sm.jpg",
+                "main_img": "/img/main_img/DM7616B/molding-DM7616B-05002-1.jpg"
             }
         ]
     },
@@ -528,7 +528,7 @@
         ],
         "width": 76,
         "height": 16,
-        "price": 0,
+        "price": 400,
         "variants": [
             {
                 "id": "DM7616C-3098-1",
@@ -561,7 +561,7 @@
         ],
         "width": 76,
         "height": 16,
-        "price": 0,
+        "price": 400,
         "variants": [
             {
                 "id": "DM7616V-811-66",
@@ -599,7 +599,7 @@
         ],
         "width": 76,
         "height": 16,
-        "price": 0,
+        "price": 400,
         "variants": [
             {
                 "id": "DM7616A-202-1",
@@ -621,7 +621,7 @@
         ],
         "width": 76,
         "height": 16,
-        "price": 0,
+        "price": 400,
         "variants": [
             {
                 "id": "DM7616-230",
@@ -645,7 +645,7 @@
         ],
         "width": 74,
         "height": 24,
-        "price": 0,
+        "price": 590,
         "variants": [
             {
                 "id": "DM7424-B21",
@@ -720,7 +720,7 @@
         ],
         "width": 70,
         "height": 30,
-        "price": 0,
+        "price": 600,
         "variants": [
             {
                 "id": "LF49A-X811",
@@ -788,7 +788,7 @@
         ],
         "width": 70,
         "height": 32,
-        "price": 0,
+        "price": 560,
         "variants": [
             {
                 "id": "R283-055H",
@@ -816,7 +816,7 @@
         ],
         "width": 68,
         "height": 32,
-        "price": 0,
+        "price": 540,
         "variants": [
             {
                 "id": "DM6832-843",
@@ -864,7 +864,7 @@
         ],
         "width": 68,
         "height": 32,
-        "price": 0,
+        "price": 540,
         "variants": [
             {
                 "id": "AM6832-7083",
@@ -913,7 +913,7 @@
         ],
         "width": 68,
         "height": 30,
-        "price": 0,
+        "price": 540,
         "variants": [
             {
                 "id": "DM6830-X811-10",
@@ -3166,9 +3166,14 @@
     "DM4033": {
         "model_name": "DM4033",
         "group_image": "/img/models_img/molding-DM4033.jpg",
-        "category": [],
+        "category": [
+            "Пластиковий багет",
+            "Багет для картин",
+            "Багет для вишивки",
+            "Багет для ікон"
+        ],
         "width": 69,
-        "height": 0,
+        "height": 33,
         "price": 0,
         "variants": [
             {
@@ -3206,9 +3211,12 @@
     "SM006": {
         "model_name": "SM006",
         "group_image": "/img/models_img/molding-SM006.jpg",
-        "category": [],
-        "width": 110,
-        "height": 0,
+        "category": [
+            "Пластиковий багет",
+            "Багет для ікон"
+        ],
+        "width": 40,
+        "height": 20,
         "price": 0,
         "variants": [
             {

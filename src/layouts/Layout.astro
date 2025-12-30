@@ -15,6 +15,37 @@ import "../styles/global.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<style is:global>
+			/* Націлюємося на конкретний клас Pagefind, щоб мати вищий пріоритет */
+			.pagefind-ui {
+				--pagefind-ui-scale: 0.75 !important;
+				--pagefind-ui-primary: #c05331 !important;
+				--pagefind-ui-text: #3d2b1f !important;
+				--pagefind-ui-background: #ffffff !important;
+				--pagefind-ui-border: #e2d8c9 !important;
+				--pagefind-ui-tag: #fdfbf7 !important;
+				--pagefind-ui-border-radius: 9999px !important;
+				--pagefind-ui-font:
+					ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+					"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+				--pagefind-ui-font-weight: 500 !important;
+				--pagefind-ui-font-size: 16px !important;
+			}
+
+			/* Якщо навіть це не допомагає, ми "б'ємо" по внутрішнім елементам */
+			.pagefind-ui .pagefind-ui__search-input {
+				background-color: #ffffff !important;
+				color: #3d2b1f !important;
+				border: 1px solid #e2d8c9 !important;
+				font-weight: 500 !important;
+				font-size: 16px !important;
+			}
+
+			.pagefind-ui .pagefind-ui__search-clear {
+				/* background-color: #c05331 !important; */
+				color: #c05331 !important;
+			}
+		</style>
 	</head>
 	<body class="bg-main-bg text-main-text flex flex-col min-h-screen">
 		<slot />

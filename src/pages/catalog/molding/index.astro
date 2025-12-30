@@ -42,42 +42,109 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                 </p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Sidebar Filters -->
-                <aside class="w-full lg:w-1/4 flex-shrink-0">
-                    <!-- Mobile Filter Toggle Button -->
+            <!-- Mobile Sticky Controls -->
+            <div
+                class="lg:hidden sticky top-[65px] bg-main-bg/95 backdrop-blur-sm py-4 border-b border-main-borders mb-6 z-40 -mx-4 px-4 shadow-sm transition-all duration-300"
+                id="mobileControls"
+            >
+                <div class="flex gap-2">
+                    <!-- Filter Toggle -->
                     <button
                         id="filterToggle"
-                        class="lg:hidden w-full flex items-center justify-between bg-cards p-4 rounded-xl shadow-sm border border-main-borders mb-4 text-main-text font-bold"
+                        class="flex-1 flex items-center justify-center gap-2 bg-cards px-4 py-3 rounded-lg shadow-sm border border-main-borders text-main-text font-bold text-sm"
                     >
-                        <span>Фільтри</span>
                         <svg
-                            id="filterChevron"
-                            class="w-5 h-5 transform transition-transform"
+                            class="w-5 h-5 text-accent"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
-                            ><path
+                        >
+                            <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                d="M19 9l-7 7-7-7"></path></svg
+                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                            ></path>
+                        </svg>
+                        <span>Фільтри</span>
+                        <span
+                            id="filterBadge"
+                            class="hidden bg-accent text-white text-[10px] px-1.5 py-0.5 rounded-full"
+                            >0</span
                         >
                     </button>
 
+                    <!-- Sort Select Mobile -->
+                    <div class="relative flex-[1.5]">
+                        <select
+                            class="sort-select w-full appearance-none bg-cards px-4 py-3 rounded-lg shadow-sm border border-main-borders text-main-text font-bold text-sm focus:outline-none focus:ring-1 focus:ring-accent pr-10"
+                        >
+                            <option value="width-desc"
+                                >Ширина (від більшої)</option
+                            >
+                            <option value="width-asc"
+                                >Ширина (від меншої)</option
+                            >
+                            <option value="price-desc"
+                                >Ціна (від більшої)</option
+                            >
+                            <option value="price-asc">Ціна (від меншої)</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-main-text"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters -->
+                <aside class="w-full lg:w-1/4 flex-shrink-0 z-45">
                     <div
                         id="filterContent"
-                        class="hidden lg:block bg-cards p-6 rounded-xl shadow-sm border border-main-borders sticky top-24"
+                        class="invisible opacity-0 -translate-y-4 lg:visible lg:opacity-100 lg:translate-y-0 fixed inset-x-0 top-[72px] bottom-0 z-50 overflow-y-auto bg-main-bg p-6 border-t border-main-borders transition-all duration-300 ease-in-out lg:static lg:bg-cards lg:p-6 lg:rounded-xl lg:shadow-sm lg:border lg:sticky lg:top-24 lg:h-auto lg:z-auto lg:overflow-visible lg:w-auto"
                     >
                         <div class="flex items-center justify-between mb-6">
                             <h2 class="text-xl font-bold text-main-text">
                                 Фільтри
                             </h2>
-                            <button
-                                id="resetFilters"
-                                class="text-sm text-accent hover:text-accent-hover underline"
-                                >Скинути всі</button
-                            >
+                            <div class="flex items-center gap-4">
+                                <button
+                                    id="resetFilters"
+                                    class="text-sm text-accent hover:text-accent-hover underline"
+                                    >Скинути</button
+                                >
+                                <button
+                                    id="closeFilters"
+                                    class="lg:hidden p-2 -mr-2 text-main-text hover:text-accent"
+                                >
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        ></path></svg
+                                    >
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Price Filter -->
@@ -158,13 +225,58 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 
                 <!-- Product Grid -->
                 <div class="w-full lg:w-3/4">
-                    <!-- Results Count -->
-                    <div class="mb-4 text-secondary-text text-sm">
-                        Знайдено моделей: <span
-                            id="resultsCount"
-                            class="font-semibold text-main-text"
-                            >{moldings.length}</span
-                        >
+                    <!-- Results Header (Count + Desktop Sort) -->
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4"
+                    >
+                        <div class="text-secondary-text text-sm">
+                            Знайдено моделей: <span
+                                id="resultsCount"
+                                class="font-semibold text-main-text"
+                                >{moldings.length}</span
+                            >
+                        </div>
+
+                        <!-- Desktop Sort Select -->
+                        <div class="hidden lg:flex items-center gap-3">
+                            <span class="text-sm text-secondary-text"
+                                >Сортувати за:</span
+                            >
+                            <div class="relative">
+                                <select
+                                    class="sort-select appearance-none px-3 py-1.5 pr-8 rounded-lg border border-main-borders bg-cards text-sm text-main-text hover:border-accent transition-colors focus:outline-none focus:ring-1 focus:ring-accent"
+                                >
+                                    <option value="width-desc"
+                                        >Ширина (від більшої)</option
+                                    >
+                                    <option value="width-asc"
+                                        >Ширина (від меншої)</option
+                                    >
+                                    <option value="price-desc"
+                                        >Ціна (від дорогих)</option
+                                    >
+                                    <option value="price-asc"
+                                        >Ціна (від дешевших)</option
+                                    >
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-main-text"
+                                >
+                                    <svg
+                                        class="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div
@@ -227,15 +339,87 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
     const resetBtn = document.getElementById("resetFilters");
     const filterToggle = document.getElementById("filterToggle");
     const filterContent = document.getElementById("filterContent");
-    const filterChevron = document.getElementById("filterChevron");
+    const filterBadge = document.getElementById("filterBadge");
+    const closeFilters = document.getElementById("closeFilters");
+    const sortSelects = document.querySelectorAll(".sort-select");
+
+    // State
+    let currentSort = { field: "width", direction: "desc" };
 
     // Toggle Filters on Mobile
-    filterToggle?.addEventListener("click", () => {
-        filterContent?.classList.toggle("hidden");
-        filterChevron?.classList.toggle("rotate-180");
+    function toggleFilters() {
+        if (!filterContent) return;
+
+        // Toggle State Classes
+        filterContent.classList.toggle("invisible");
+        filterContent.classList.toggle("opacity-0");
+        filterContent.classList.toggle("-translate-y-4");
+
+        filterContent.classList.toggle("visible");
+        filterContent.classList.toggle("opacity-100");
+        filterContent.classList.toggle("translate-y-0");
+
+        const isOpen = filterContent.classList.contains("visible");
+
+        if (isOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    }
+
+    filterToggle?.addEventListener("click", toggleFilters);
+
+    closeFilters?.addEventListener("click", () => {
+        // Force Close
+        if (!filterContent) return;
+
+        filterContent.classList.add("invisible", "opacity-0", "-translate-y-4");
+        filterContent.classList.remove(
+            "visible",
+            "opacity-100",
+            "translate-y-0",
+        );
+
+        document.body.classList.remove("overflow-hidden");
     });
 
+    // Formatting currency
+    const formatCurrency = (val: number) => val.toString();
+
+    function updateSortSelects(value: string) {
+        sortSelects.forEach((select: any) => {
+            select.value = value;
+        });
+    }
+
+    function sortItems(items: Element[]) {
+        if (!currentSort.field) return items;
+
+        return items.sort((a: any, b: any) => {
+            const valA = parseFloat(a.dataset[currentSort.field!]);
+            const valB = parseFloat(b.dataset[currentSort.field!]);
+
+            if (currentSort.direction === "asc") {
+                return valA - valB;
+            } else {
+                return valB - valA;
+            }
+        });
+    }
+
+    function updateBadge(count: number) {
+        if (!filterBadge) return;
+        if (count > 0) {
+            filterBadge.textContent = count.toString();
+            filterBadge.classList.remove("hidden");
+        } else {
+            filterBadge.classList.add("hidden");
+        }
+    }
+
     function filterItems() {
+        // Collect Filter State
         const maxPrice = parseInt(priceRange.value);
         if (priceValue) priceValue.textContent = maxPrice.toString();
 
@@ -250,17 +434,22 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
             .filter((cb: any) => cb.checked)
             .map((cb: any) => cb.value);
 
-        let visibleCount = 0;
+        // Calculate active filters count
+        let activeCount = 0;
+        if (maxPrice < parseInt(priceRange.max)) activeCount++;
+        activeCount += selectedWidths.length;
+        activeCount += selectedCategories.length;
+        updateBadge(activeCount);
 
+        // Filter logic
+        let visibleItems: HTMLElement[] = [];
         gridItems.forEach((item: any) => {
             const price = parseInt(item.dataset.price);
             const width = parseInt(item.dataset.width);
             const categories = JSON.parse(item.dataset.categories);
 
-            // Filter by Price (Max limit)
             const priceMatch = price <= maxPrice;
 
-            // Filter by Width
             let widthMatch = true;
             if (selectedWidths.length > 0) {
                 widthMatch = selectedWidths.some(
@@ -268,7 +457,6 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
                 );
             }
 
-            // Filter by Category
             let categoryMatch = true;
             if (selectedCategories.length > 0) {
                 categoryMatch = selectedCategories.some((cat) =>
@@ -277,23 +465,53 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
             }
 
             if (priceMatch && widthMatch && categoryMatch) {
-                item.style.display = "block";
-                visibleCount++;
+                visibleItems.push(item);
             } else {
                 item.style.display = "none";
             }
         });
 
-        if (resultsCount) resultsCount.textContent = visibleCount.toString();
+        // Sort items
+        visibleItems = sortItems(visibleItems) as HTMLElement[];
+
+        // Re-append items in sorted order
+        const gridContainer = document.getElementById("moldingGrid");
+        if (gridContainer) {
+            visibleItems.forEach((item) => {
+                item.style.display = "block";
+                gridContainer.appendChild(item); // Moves item to new position
+            });
+        }
+
+        // Update Count and No Results
+        if (resultsCount)
+            resultsCount.textContent = visibleItems.length.toString();
 
         if (noResults) {
-            if (visibleCount === 0) {
-                noResults.classList.remove("hidden");
-            } else {
-                noResults.classList.add("hidden");
-            }
+            visibleItems.length === 0
+                ? noResults.classList.remove("hidden")
+                : noResults.classList.add("hidden");
         }
     }
+
+    // Sort Change Handlers
+    sortSelects.forEach((select) => {
+        select.addEventListener("change", (e: any) => {
+            const [field, direction] = e.target.value.split("-");
+            currentSort = { field, direction };
+
+            // Sync other selects
+            updateSortSelects(e.target.value);
+
+            // Rotate chevron logic could be added here if we want to indicate direction, but standard sort doesn't usually use chevron rotation.
+            // The user asked for "same as filter button" which implies just the icon style.
+
+            filterItems();
+        });
+    });
+
+    // Initial Sort
+    filterItems();
 
     // Attach listeners
     priceRange?.addEventListener("input", filterItems);
@@ -309,6 +527,12 @@ const maxPrice = Math.max(...moldings.map((m) => m.price || 0));
 
         widthCheckboxes.forEach((cb: any) => (cb.checked = false));
         categoryCheckboxes.forEach((cb: any) => (cb.checked = false));
+
+        // Reset sort
+        const defaultSort = "width-desc";
+        const [field, direction] = defaultSort.split("-");
+        currentSort = { field, direction };
+        updateSortSelects(defaultSort);
 
         filterItems();
     });
